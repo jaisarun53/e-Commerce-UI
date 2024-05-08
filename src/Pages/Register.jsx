@@ -1,45 +1,149 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  OutlinedInput,
+} from "@mui/material";
+import { Formik } from "formik";
 import React from "react";
-// import RegisterForm from "../component/RegisterForm";
 import { Link } from "react-router-dom";
+import { registerValidateSchema } from "../ValidationSchema/Register.validation.schema";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Register = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
-    <Box
-      sx={{
-        width: {
-          xs: "90%",
-          sm: "70%",
-          md: "50%",
-          lg: "30%",
-        },
+    <Box>
+      {/* <Typography>hello</Typography> */}
+      <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          role: "",
+          gender: "",
+        }}
+        validationSchema={registerValidateSchema}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ handleSubmit, touched, errors, getFieldProps }) => {
+          return (
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "1rem",
+                gap: "1rem",
+                width: "350px",
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+              }}
+            >
+              <Typography variant="h4">Register</Typography>
+              <FormControl>
+                <TextField
+                  label="First name"
+                  {...getFieldProps("firstName")}
+                  required
+                />
+                {touched.firstName && errors.firstName ? (
+                  <FormHelperText error>{errors.firstName}</FormHelperText>
+                ) : null}
+              </FormControl>
 
-        borderRadius: "10px",
-        margin: "auto",
+              <FormControl>
+                <TextField
+                  label="Last name"
+                  {...getFieldProps("lastName")}
+                  required
+                />
+                {touched.lastName && errors.lastName ? (
+                  <FormHelperText error>{errors.lastName}</FormHelperText>
+                ) : null}
+              </FormControl>
 
-        boxShadow: {
-          xs: "none",
-          sm: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-        },
-        padding: "2rem",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "2rem",
-        marginTop: {
-          xs: 0,
-          sm: "5rem",
-        },
-      }}
-    >
-      <Typography variant="h3" sx={{ color: "grey", marginBottom: "2rem" }}>
-        Register
-      </Typography>
-      <RegisterForm />
-      <Link to="/login">Already registered? Login</Link>
+              <FormControl>
+                <TextField label="Email" {...getFieldProps("email")} required />
+                {touched.email && errors.email ? (
+                  <FormHelperText error>{errors.email}</FormHelperText>
+                ) : null}
+              </FormControl>
+
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  {...getFieldProps}
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+                {touched.password && errors.password ? (
+                  <FormHelperText error>{errors.password}</FormHelperText>
+                ) : null}
+              </FormControl>
+
+              <FormControl fullWidth required>
+                <InputLabel>Role</InputLabel>
+                <Select {...getFieldProps("role")} label="Role">
+                  <MenuItem value="buyer">Buyer</MenuItem>
+                  <MenuItem value="seller">Seller</MenuItem>
+                </Select>
+                {touched.role && errors.role ? (
+                  <FormHelperText error>{errors.role}</FormHelperText>
+                ) : null}
+              </FormControl>
+
+              <FormControl fullWidth required>
+                <InputLabel>Gender</InputLabel>
+                <Select {...getFieldProps("gender")} label="Gender">
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                  <MenuItem value="preferNotToSay">Prefer Not To Say</MenuItem>
+                </Select>
+                {touched.gender && errors.gender ? (
+                  <FormHelperText error>{errors.gender}</FormHelperText>
+                ) : null}
+              </FormControl>
+
+              <Button color="secondary" variant="contained" type="submit">
+                Sign up
+              </Button>
+
+              <Link to="/login">Already Registered? Login</Link>
+            </form>
+          );
+        }}
+      </Formik>
     </Box>
   );
 };
-
 export default Register;

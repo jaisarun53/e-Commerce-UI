@@ -9,12 +9,21 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
-import { Password } from "@mui/icons-material";
+import { Password, Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { loginValidationSchema } from "../ValidationSchema/Login.validation.schema";
 import { Link } from "react-router-dom";
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
       <Formik
@@ -46,16 +55,35 @@ const LoginForm = () => {
             <Typography variant="h4">Sign in</Typography>
 
             <FormControl>
-              <TextField label="Email" {...formik.getFieldProps("email")} />
+              <TextField
+                label="Email"
+                {...formik.getFieldProps("email")}
+                required
+              />
               {formik.touched.email && formik.errors.email ? (
                 <FormHelperText error>{formik.errors.email}</FormHelperText>
               ) : null}
             </FormControl>
 
-            <FormControl>
-              <TextField
+            <FormControl variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                {...formik.getFieldProps}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
                 label="Password"
-                {...formik.getFieldProps("password")}
               />
               {formik.touched.password && formik.errors.password ? (
                 <FormHelperText error>{formik.errors.password}</FormHelperText>
