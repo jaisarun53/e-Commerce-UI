@@ -5,7 +5,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import guestRoutes from "./Routes/GuestRoutes";
-const router = createBrowserRouter([...guestRoutes]);
+import mainRoutes from "./Routes/MainRoutes";
+const router = createBrowserRouter([...guestRoutes, ...mainRoutes]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

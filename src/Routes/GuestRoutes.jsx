@@ -1,12 +1,15 @@
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import MinimumLayout from "../layouts/MinimumLayout";
 
 const guestRoutes = [
   {
     path: "/",
-    element: <div>Hello world</div>,
+    element: <MinimumLayout />,
+    Children: [
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+    ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
 ];
 export default guestRoutes;
