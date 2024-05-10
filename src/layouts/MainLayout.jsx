@@ -7,6 +7,7 @@ const MainLayout = () => {
   return (
     <>
       {/* <Header /> */}
+      <h3>Headers</h3>
       <Box
         sx={{
           display: "flex",
@@ -20,6 +21,7 @@ const MainLayout = () => {
       </Box>
 
       {/* <Footer /> */}
+      <h3>Footers</h3>
     </>
   );
 };

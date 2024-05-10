@@ -5,7 +5,7 @@ const mainRoutes = [
   {
     path: "/",
     element: <MainLayout />,
-    Children: [
+    children: [
       {
         path: "homepage",
         element: <Homepage />,

@@ -6,7 +6,7 @@ const guestRoutes = [
   {
     path: "/",
     element: <MinimumLayout />,
-    Children: [
+    children: [
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
