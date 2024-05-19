@@ -1,21 +1,35 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React from "react";
+import { Formik, validateYupSchema } from "formik";
 import {
   Button,
   FormControl,
   FormHelperText,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
   TextField,
-  Typography
+  Typography,
+  InputLabel,
+  Select,
+  MenuItem,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  CircularProgress,
 } from "@mui/material";
-import { Formik } from "formik";
-import React from "react";
-
-import { Link } from "react-router-dom";
+import { Password, Visibility, VisibilityOff } from "@mui/icons-material";
+import { useMutation } from "@tanstack/react-query";
 import { loginValidationSchema } from "../ValidationSchema/Login.validation.schema";
+import { Link } from "react-router-dom";
+import $axios from "../lib/axios/axios.instance";
 const LoginForm = () => {
+  const { isPending, mutate } = useMutation({
+    mutationKey: ["login-user"],
+    mutationFn: async (values) => {
+      return await $axios.post("/user/login", values);
+    },
+  });
+  if (isPending) {
+    return <CircularProgress />;
+  }
+
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,6 +47,7 @@ const LoginForm = () => {
         validationSchema={loginValidationSchema}
         onSubmit={(values) => {
           console.log(values);
+          mutate(values);
         }}
       >
         {(formik) => (
@@ -63,12 +78,12 @@ const LoginForm = () => {
               ) : null}
             </FormControl>
 
-            <FormControl variant="outlined">
+            <FormControl variant="outlined" fullWidth>
               <InputLabel htmlFor="outlined-adornment-password">
                 Password
               </InputLabel>
               <OutlinedInput
-                {...formik.getFieldProps}
+                {...formik.getFieldProps("password")}
                 type={showPassword ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">

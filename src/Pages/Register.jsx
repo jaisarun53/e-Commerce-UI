@@ -91,7 +91,7 @@ const Register = () => {
                   Password
                 </InputLabel>
                 <OutlinedInput
-                  {...getFieldProps}
+                  {...getFieldProps("password")}
                   type={showPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
