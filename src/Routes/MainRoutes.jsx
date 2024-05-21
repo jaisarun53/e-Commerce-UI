@@ -1,4 +1,5 @@
 import Homepage from "../Pages/Homepage";
+import ProductList from "../Pages/ProductList";
 import MainLayout from "../layouts/MainLayout";
 
 const mainRoutes = [
@@ -9,6 +10,10 @@ const mainRoutes = [
       {
         path: "homepage",
         element: <Homepage />,
+      },
+      {
+        path: "products",
+        element: <ProductList />,
       },
     ],
   },
