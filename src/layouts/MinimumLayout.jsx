@@ -1,12 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const MinimumLayout = () => {
   return (
     <>
-      <h3>Headers</h3>
+      <Header />
       <Outlet />
-      <h3>Footers</h3>
+      <Footer />
     </>
   );
 };
