@@ -30,14 +30,14 @@ const LoginForm = () => {
       navigate("/homepage");
 
       // extract token, role and first name from login response
-      // const accessToken = res?.data?.accessToken;
-      // const firstName = res?.data?.userDetails?.firstName;
-      // const role = res?.data?.userDetails?.role;
+      const accessToken = res?.data?.token;
+      const firstName = res?.data?.user?.firstName;
+      const role = res?.data?.user?.role;
 
       // set these values to local storage
-      // localStorage.setItem("accessToken", accessToken);
-      // localStorage.setItem("firstName", firstName);
-      // localStorage.setItem("role", role);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("role", role);
     },
     onError: (error) => {
       dispatch(openErrorSnackbar(error?.response?.data?.message));

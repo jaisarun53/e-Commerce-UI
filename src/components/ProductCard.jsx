@@ -5,27 +5,44 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Chip, Stack } from "@mui/material";
 
 const ProductCard = () => {
   return (
-    <Card sx={{ maxWidth: "30%" }}>
+    <Card
+      sx={{
+        maxWidth: "30%",
+        boxShadow:
+          "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+      }}
+    >
       <CardMedia
         sx={{ height: 300 }}
-        image="https://i0.wp.com/www.australiangeographic.com.au/wp-content/uploads/2021/09/blue-crested-lizard-1.jpg?fit=900%2C495&ssl=1"
-        title="green iguana"
+        image="https://www.busyboo.com/wp-content/uploads/samsung-smart-tv-2.jpg"
+        title="samsung tv"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
+        <Stack direction="row" justifyContent="space-between">
+          <Typography gutterBottom variant="h5" component="div">
+            Smart TV
+          </Typography>
+
+          <Chip label="Samsung" color="secondary" variant="outlined" />
+        </Stack>
+        <Typography sx={{ display: "flex", flexDirection: "row" }}>
+          Price:$199
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores
+          rerum officiis debitis quia quos. Itaque aliquid, repudiandae cum
+          voluptatem provident tenetur quas molestias necessitatibus laboriosam,
+          et expedita facilis? Iusto, neque.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button color="secondary" variant="contained" fullWidth>
+          Explore
+        </Button>
       </CardActions>
     </Card>
   );
