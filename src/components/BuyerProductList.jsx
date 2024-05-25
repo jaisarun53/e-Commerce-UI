@@ -1,7 +1,12 @@
 import React from "react";
+import ProductCard from "./ProductCard";
 
 const BuyerProductList = () => {
-  return <div>BuyerProductList</div>;
+  return (
+    <>
+      <ProductCard />
+    </>
+  );
 };
 
 export default BuyerProductList;
