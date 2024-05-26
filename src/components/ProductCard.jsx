@@ -7,36 +7,34 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Chip, Stack } from "@mui/material";
 
-const ProductCard = () => {
+const ProductCard = (props) => {
+  console.log(props);
   return (
     <Card
       sx={{
-        maxWidth: "30%",
+        Width: "400px",
         boxShadow:
           "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
       }}
     >
       <CardMedia
-        sx={{ height: 300 }}
+        sx={{ height: "400px", width: "400px" }}
         image="https://www.busyboo.com/wp-content/uploads/samsung-smart-tv-2.jpg"
-        title="samsung tv"
+        title={props.brand}
       />
       <CardContent>
         <Stack direction="row" justifyContent="space-between">
           <Typography gutterBottom variant="h5" component="div">
-            Smart TV
+            {props.name}
           </Typography>
 
-          <Chip label="Samsung" color="secondary" variant="outlined" />
+          <Chip label={props.brand} color="secondary" variant="outlined" />
         </Stack>
         <Typography sx={{ display: "flex", flexDirection: "row" }}>
-          Price:$199
+          Price:${props.price}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores
-          rerum officiis debitis quia quos. Itaque aliquid, repudiandae cum
-          voluptatem provident tenetur quas molestias necessitatibus laboriosam,
-          et expedita facilis? Iusto, neque.
+          {props.description}
         </Typography>
       </CardContent>
       <CardActions>
