@@ -8,29 +8,6 @@ const ProductList = () => {
   const userRole = localStorage.getItem("role");
   return (
     <>{userRole === "seller" ? <SellerproductList /> : <BuyerProductList />}</>
-    // <Box
-    //   sx={{
-    //     display: "flex",
-    //     flexWrap: "wrap",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     marginBottom: "2rem",
-    //     gap: "2rem",
-    //   }}
-    // >
-    //   <ProductCard />
-    //   {/* <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard />
-    //   <ProductCard /> */}
-    // </Box>
   );
 };
 
