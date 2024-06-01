@@ -44,8 +44,8 @@ const AddProduct = () => {
               flexDirection: "column",
               justifyContent: "space-around",
               padding: "1rem",
-              gap: "1rem",
-              width: "400px",
+              // gap: "1rem",
+              // width: "400px",
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
